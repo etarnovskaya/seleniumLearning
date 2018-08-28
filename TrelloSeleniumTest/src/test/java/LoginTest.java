@@ -5,25 +5,25 @@ public class LoginTest extends TestBase {
     @Test
     public void testLogin() {
         initLoginToTheAccount();
-        fillLoginForm();
+        fillLoginForm("elena.telran@yahoo.com", "12345.com");
         submitLogin();
     }
 
-    private void submitLogin() {
+    public void submitLogin() {
         driver.findElement(By.id("login")).click();
     }
 
-    private void fillLoginForm() {
+    public void fillLoginForm(String email, String password) {
         driver.findElement(By.id("user")).click();
         driver.findElement(By.id("user")).clear();
-        driver.findElement(By.id("user")).sendKeys("elena.telran@yahoo.com");
+        driver.findElement(By.id("user")).sendKeys(email);
 
         driver.findElement(By.name("password")).click();
         driver.findElement(By.name("password")).clear();
-        driver.findElement(By.name("password")).sendKeys("12345.com");
+        driver.findElement(By.name("password")).sendKeys(password);
     }
 
-    private void initLoginToTheAccount() {
+    public void initLoginToTheAccount() {
         driver.findElement(By.linkText("Log In")).click();
 
     }
