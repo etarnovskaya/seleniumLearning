@@ -13,7 +13,7 @@ public class TestBase {
     public void setUp(){
         driver = new ChromeDriver();
         driver.manage().timeouts()
-                .implicitlyWait(5, TimeUnit.SECONDS);
+                .implicitlyWait(10, TimeUnit.SECONDS);
         openEbay();
     }
 
@@ -26,15 +26,19 @@ public class TestBase {
             driver.findElement(By.id("sgnBt")).click();
         }
 
-    protected void fillLoginForm() {
-            driver.findElement(By.name("userid")).click();
-            driver.findElement(By.name("userid")).clear();
-            driver.findElement(By.name("userid")).sendKeys("etarnovskaya+1535359233097@gmail.com");
+    protected void fillLoginForm(String email, String password) {
+        type( By.name("userid"),email);
 
             driver.findElement(By.id("pass")).click();
             driver.findElement(By.id("pass")).clear();
-            driver.findElement(By.id("pass")).sendKeys("aA123456789");
+            driver.findElement(By.id("pass")).sendKeys(password);
         }
+
+    public void type(By locator, String text) {
+        driver.findElement(locator).click();
+        driver.findElement(locator).clear();
+        driver.findElement(locator).sendKeys(text);
+    }
 
     public void initLogIn() {
             driver.findElement(By.linkText("Sign in")).click();
